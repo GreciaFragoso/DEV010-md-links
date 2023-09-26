@@ -9,7 +9,7 @@ const { mdLinks } = require('./lib/mdLinks')
 console.log('Index executing');
 
 mdLinks('./prueba.txt')
-  .then(links => {
+  .then(() => {
     console.log('Promise ok')
     // => [{ href, text, file }, ...]
   })
