@@ -26,5 +26,9 @@
       "eslint:recommended",
       "plugin:jest/recommended"
     ]
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0",
+    "marked": "^9.0.3"
   }
 }
