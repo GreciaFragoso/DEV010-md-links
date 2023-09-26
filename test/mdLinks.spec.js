@@ -11,17 +11,19 @@ describe('mdLinks', () => {
     const myPromise = mdLinks(usersPath, validatePath, readFile);
     return myPromise.then(result => {
       expect(result).toBe('Your file is allowed');
-      validatePath.mockRestore();
-      readFile.mockRestore();
     })
 
   });
   it('Reject promise', () => {
     const usersPath = './prueba.txt';
-    const validatePath = jest.fn().mockReturnValue(false);
+    const validatePath = jest.fn().mockReturnValue(true);
     const readFile = jest.fn().mockReturnValue(true);
     const myPromise = mdLinks(usersPath, validatePath, readFile);
-    return myPromise.then(result => {
+    // const array = ['.md', '.mkd', '.mdwn', '.mdown', '.mdtxt', '.mdtext', '.markdown', '.text'];
+    // const mockForIncludes = jest.fn().mockReturnValue(false);
+    // array.prototype.includes = mockForIncludes
+    // array.prototype.includes = jest.fn().mockReturnValue(false);
+    return myPromise.catch(result => {
       expect(result).toBe('Your file is not allowed');
     })
   })
