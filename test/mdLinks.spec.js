@@ -7,8 +7,8 @@ describe('mdLinks', () => {
   it('Resolve promise ', () => {
     const usersPath = './README.md';
     const validatePath = jest.fn().mockReturnValue(true);
-    const readFile = jest.fn().mockReturnValue(true);
-    const myPromise = mdLinks(usersPath, validatePath, readFile);
+    const readAFile = jest.fn().mockReturnValue(true);
+    const myPromise = mdLinks(usersPath, validatePath, readAFile);
     return myPromise.then(result => {
       expect(result).toBe('Your file is allowed');
     })
