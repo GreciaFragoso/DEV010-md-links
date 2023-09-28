@@ -8,6 +8,7 @@ describe('Find links', () => {
         return findLinks(usersPath).then(links => {
             expect(consoleSpy).toHaveBeenCalled();
             expect(links.length).toBe(3);
+            consoleSpy.mockRestore();
         })
     })
 })
