@@ -1,7 +1,7 @@
 {
   "name": "md-links",
   "version": "0.1.0",
-  "type":"commonjs",
+  "type": "commonjs",
   "engines": {
     "node": ">=16.x"
   },
@@ -29,7 +29,9 @@
     ]
   },
   "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
     "jsdom": "^22.1.0",
-    "marked": "^9.0.3"
+    "marked": "^9.0.3",
+    "node-fetch": "^3.3.2"
   }
 }

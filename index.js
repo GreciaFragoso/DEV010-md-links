@@ -1,15 +1,16 @@
 const { mdLinks } = require('./lib/mdLinks')
-const { findLinks } = require('./lib/findLinks');
+// const { findLinks } = require('./lib/findLinks');
  
 // console.log('Index executing');
 const userPath = './prueba.md';
+const validate = true;
 
 
-mdLinks(userPath)
+mdLinks(userPath, validate)
   .then((result) => {
     // console.log(result)
     // const userAbsolutePath = mdLinks(userPath)
-    findLinks(result);
+    console.log(result);
     // transformToHTML();
     // => [{ href, text, file }, ...]
   })
