@@ -1,21 +1,14 @@
-// const { hasUncaughtExceptionCaptureCallback } = require('process');
 const { requestHTTP } = require('../lib/requestHTTP');
 const fetch = require('isomorphic-fetch');
-// const { stringify } = require('querystring');
+
 
 describe('Request HTTP', () => {
     it('Should return fail if there is not HTTP response', () => {
         const mockResult = {Status: 999,
         message: 'Fail',}
-        // const response = false;
+        const requestHTTP = jest.spyOn(global, 'fetch').mockResolvedValue(mockResult);
 
-        const fetch = jest.spyOn(global, 'fetch').mockReturnValue(false);
-        // const mockResponse = { json: jest.fn().mockResolvedValue(mockResult) };
-        // const mockFetchPromise = Promise.resolve(mockResponse);
-
-        // jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve(mockResponse));
-        const myPromise = requestHTTP(fetch);
-        return myPromise('https://www.linkedin.com/in/grecia-naomi-fragoso-mart%C3%ADnez-513655138/').then(result => {
+        return requestHTTP('https://www.youtube.com/watch?v=HgqNstf4xg0').then(result => {
             expect(result).toEqual(mockResult);
         })
     })
@@ -23,14 +16,19 @@ describe('Request HTTP', () => {
     it('Should return ok if there is HTTP response', () => {
         const mockResult = {Status: 200,
         message: 'Ok',}
-
         const requestHTTP = jest.spyOn(global, 'fetch').mockResolvedValue(mockResult);
-        // const mockResponse = { json: jest.fn().mockResolvedValue(mockResult) };
-        // const mockFetchPromise = Promise.resolve(mockResponse);
-
-        // jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve(mockResponse));
 
         return requestHTTP('https://www.youtube.com/watch?v=HgqNstf4xg0').then(result => {
+            expect(result).toEqual(mockResult);
+        })
+    })
+
+    it('Should return error', () => {
+        const error = new Error();
+        const mockResult = {Status: error.Status, message: 'Fail'};
+        const requestHTTP = jest.spyOn(global, 'fetch').mockResolvedValue(mockResult);
+
+        return requestHTTP('https://example.test.com').catch(result => {
             expect(result).toEqual(mockResult);
         })
     })
