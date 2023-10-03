@@ -23,13 +23,17 @@ describe('Request HTTP', () => {
         })
     })
 
-    it('Should return error', () => {
-        const error = new Error();
-        const mockResult = {Status: error.Status, message: 'Fail'};
-        const requestHTTP = jest.spyOn(global, 'fetch').mockResolvedValue(mockResult);
+    it('Should reject promise', () => {
+        const error = {};
+        error.Status = 500;
+        error.message = 'Fail'
+        // global.fetch = jest.fn().mockRejectedValue(new Error('Fetch error'));
+        // global.fetch = jest.fn().mockResolvedValueOnce({ ok: false });
+        const mockResult = {Status: 500, message: 'Fail'};
+        const requestHTTP = jest.spyOn(global, 'fetch').mockRejectedValue(error);
 
-        return requestHTTP('https://example.test.com').catch(result => {
-            expect(result).toEqual(mockResult);
+        return requestHTTP('https://example.test.com').catch(error => {
+            expect(error).toEqual(mockResult);
         })
     })
 })
