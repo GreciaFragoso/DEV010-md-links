@@ -9,7 +9,7 @@ describe('readFile', () => {
     it('Should read a file', async () => {
         const usersPath = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\pruebatest.md';
         const mockFileContent = 'This is a test';
-        jest.spyOn(fs, 'readFile').mockImplementation((path, options, callback) => {
+        jest.spyOn(fs, 'stat').mockImplementation((path, options, callback) => {
              callback(null, mockFileContent)
         })
         const transformToHTML = jest.fn().mockResolvedValue('<p>This is a test</p>');

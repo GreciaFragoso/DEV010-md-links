@@ -12,17 +12,15 @@ console.log = (message) => {
   consoleLogOutput.push(message);
 };
 
+jest.mock('path', () => ({
+  resolve: jest.fn((usersPath) => `/fake/${usersPath}`),
+}));
+
 describe('TransformPath', () => {
     it('Should transform a route into absolute', () => {
-        const relativePath = 'route/to/be/transformed'
-        //const absolutePath = path.resolve('directory', 'file.md')
-        transformPath(relativePath);
-        expect(consoleLogOutput).toContain('Path has been transformed into absolute');
-        console.log = originalConsoleLog;
-        // expect(absolutePath).toBe('/test/route');
-        // jest.spyOn(path, 'resolve').mockImplementation((path) => {
-        //   callback(null, mockFileContent)
-        // })
+        const relativePath = 'route/to/be/transformed';
+        const result = transformPath(relativePath);
 
+        expect(result).toBe('/fake/route/to/be/transformed');
     })
 })
