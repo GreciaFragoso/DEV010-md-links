@@ -1,16 +1,17 @@
 const { mdLinks } = require('./lib/mdLinks');
-// const { readAllFiles } = require('./lib/readADirectory');
 
-// const userPath = './prueba.md';
-const userPath = './pruebas';
-const validate = true;
-// const userDirectory = './pruebas'
- 
-// readAllFiles(userDirectory);
-mdLinks(userPath, validate)
-  .then((result) => {
-    // console.log(result); este console.log daba undefined
-  })
-  .catch(console.error);
+//const { mdLinks } = md_Links;
 
- module.exports = () => mdLinks;
+module.export = {
+  mdLinks,
+};
+
+// const userPath = './pruebas';
+
+// mdLinks(userPath, true)
+//   .then((result) => {
+
+//   })
+//   .catch(console.error);
+
+//module.exports = () => mdLinks;
