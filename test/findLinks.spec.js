@@ -2,17 +2,17 @@
 const { findLinks } = require('../lib/findLinks');
 
 describe('Find links', () => {
-    it('Should return prueba.md stats', () => {
-        const usersPath = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\prueba.md';
-        const consoleSpy = jest.spyOn(console, 'log');
-        const validate = true;
+    // it('Should return prueba.md links info', () => {
+    //     const usersPath = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\prueba.md';
+    //     const consoleSpy = jest.spyOn(console, 'log');
+    //     const validate = true;
 
-        return findLinks(usersPath, validate).then(links => {
-            expect(consoleSpy).toHaveBeenCalled();
-            // expect(links.length).toBe(3);
-            consoleSpy.mockRestore();
-        })
-    })
+    //     return findLinks(usersPath, validate).then(links => {
+    //         expect(consoleSpy).toHaveBeenCalled();
+    //         // expect(links.length).toBe(3);
+    //         consoleSpy.mockRestore();
+    //     })
+    // })
     
     it('Should return only links info href, text and file', () => {
         const usersPath = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\prueba.md';

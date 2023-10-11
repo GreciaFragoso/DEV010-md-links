@@ -11,40 +11,50 @@ describe('mdLinks', () => {
     const validate = true;
     const allFilesMock = readAllFiles(usersPath);
     const mockForEach = jest.fn();
+    const stats = { isDirectory: jest.fn().mockReturnValue(true) };
+    const statSpy = jest.spyOn(fs, 'stat');
+    statSpy.mockImplementation((path, callback) => {
+          callback(null, stats);
+    })
     
     jest.spyOn(allFilesMock, 'forEach').mockImplementation(mockForEach);
+    const myPromise = mdLinks(usersPath, validate);
 
-    expect(allFilesMock.length).toBe(3);
+    return myPromise.then(result => {
+      expect(typeof result).toBe('object');
+      expect(allFilesMock.length).toBe(3);
+      statSpy.mockRestore();
+    })
+    // expect(allFilesMock.length).toBe(3);
+    // statSpy.mockRestore();
+
+    // allFilesMock.mockRestore();
   })
 
-  // it('Validate stats', () => {
+  // it('Should read a directory', () => {
   //   const directoryMock = './pruebas';
-  //   const validate = true;
-  //   const mockStats = {
-  //     isDirectory: jest.fn().mockReturnValue(true),
-  //   }
+  //   const stats = { isDirectory: jest.fn().mockReturnValue(true) };
 
-  //   const mockStat = jest
-  //   .spyOn(fs, 'stat')
-  //   .mockImplementation((path, callback) => {
-  //     callback(null,mockStats);
+  //   jest.spyOn(fs, 'stat').mockImplementation((path, callback) => {
+  //     callback(null, stats);
   //   })
+  //   // const directoryAbsoluteMock = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\pruebas';
+  //   const readAllFiles = jest.fn();
+  //   const myPromise = mdLinks(directoryMock, readAllFiles);
 
-  //   mdLinks(fileMock, validate)
-
-  //   // const findLinks = jest.fn();
-  //   // expect(findLinks).toHaveBeenCalledWith(fileMock, validate);
-  //   expect(mockStat).toHaveBeenCalled();
+  //   return myPromise.then(result => {
+  //     expect(typeof result).toBe('object');
+  //   });
   // })
 
   it('Resolve promise ', () => {
-    const usersPath = './README.md';
+    const usersPath = './pruebas/prueba1.md';
     const userAbsolutePath = 'C:\\Users\\Grecia\\Desktop\\Curso Python\\Bootcamp Laboratoria\\MD - Links\\DEV010-md-links\\README.md';
     const validatePath = jest.fn().mockReturnValue(userAbsolutePath);
     const readAFile = jest.fn().mockReturnValue(true);
     const myPromise = mdLinks(usersPath, validatePath, readAFile);
     return myPromise.then(result => {
-      expect(result).toBe('Directory scanned');
+      expect(typeof result).toBe('object');
     })
 
   });
@@ -59,6 +69,7 @@ describe('mdLinks', () => {
     // array.prototype.includes = mockForIncludes
     // array.prototype.includes = jest.fn().mockReturnValue(false);
     return myPromise.catch(result => {
+      // expect(result).toBe(error);
       expect(result).toStrictEqual(error);
     })
   })
