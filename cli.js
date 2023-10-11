@@ -2,6 +2,8 @@
 // convierte este archivo en un script de comandos de línea
 
 const { mdLinks } = require('./lib/mdLinks');
+const colors = require('colors');
+
 const [,, ...args] = process.argv;
 const userPath = args[0]
 const validate = args.includes('--validate');
@@ -19,15 +21,15 @@ if (validate && stats) {
         const brokenLinks = links.filter(link => link.Message === 'Fail')
         let hrefBrokenLinks = brokenLinks.map(link => link.href)
         const totalLinks = links.length; 
-        console.log('Valid links: ', hrefValidLinks);
+        console.log(colors.bold('Valid links: '), colors.green(hrefValidLinks));
         if (hrefBrokenLinks.length === 0) {
             hrefBrokenLinks = 0;
         }
         if (hrefValidLinks.length === 0) {
             hrefBrokenLinks = 0;
         }
-        console.log('Broken links: ', hrefBrokenLinks);
-        console.log('Total links: ', totalLinks);
+        console.log(colors.bold('Broken links: '), colors.red(hrefBrokenLinks));
+        console.log(colors.bold('Total links: '), colors.magenta(totalLinks));
         return;
     })
     .catch(error => {

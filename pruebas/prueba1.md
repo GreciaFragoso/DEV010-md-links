@@ -2,3 +2,5 @@ hola, en este [link](https://lucid.app/lucidchart/d161b083-b971-413b-8904-d1a779
 
 En este otro [lugar](https://github.com/Laboratoria/DEV010-md-links/blob/main/docs/03-milestone.md) está el hito-3 
 del proyecto, el cual estoy solucionando en este momento.
+
+Click [aquí](https://www.linkedin.com/in/grecia-naomi-fragoso-mart%C3%ADnez-513655138/) para ir a mi perfil de LinkedIn.
